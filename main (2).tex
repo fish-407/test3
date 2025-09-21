@@ -1,0 +1,86 @@
+\documentclass[10.5pt]{ctexart}
+\usepackage{titlesec}
+\usepackage{graphicx}
+\usepackage{indentfirst}
+\usepackage{hyperref}
+
+\setlength\parindent{2em}
+
+\title{命令行环境与Python}
+\author{张中瑞}
+\date{9月19日}
+
+\begin{document}
+\maketitle
+
+\section{练习内容}
+\subsection{命令行环境练习内容}
+\begin{enumerate}
+    \item 进程管理操作：使用pgrep和pkill命令查找并结束进程
+    使用wait命令在一个进程结束后再执行另一个进程，编写pidwaitbash 函数，持续等待指定 PID 进程结束，使用sleep减少 CPU 消耗
+    \item 终端多路复用：tmux的使用和自定义tmux的配置
+    \item 命令别名设置：创建dc别名替代错误输入的dc
+    \item 远程设备的连接：ssh密钥配对；
+    配置.ssh文件设置虚拟机连接内容；
+    使用sssh-copy-id copy ssh密钥到服务器；
+    使用虚拟机Web服务器的本地端口转发访问；
+    配置ssh服务器，禁用密码验证和root登录。
+    \end{enumerate}
+\subsection{python入门基础练习内容}
+\begin{enumerate} 
+    \item 变量赋值与打印：name = "小明"; print(name) → 定义字符串变量并输出内容
+    \item 整数计算与输出：print(5 + 3 * 2) → 计算表达式并打印结果（输出 11）
+    \item 字符串拼接：print("Hello " + "Python") → 合并两个字符串（输出 Hello Python）
+    \item 列表创建与取值：fruits = ["苹果", "香蕉"]; print(fruits[0]) → 定义列表并取第一个元素（输出苹果）
+    \item 简单条件判断：age = 18; print("成年" if age >= 18 else "未成年") → 按条件输出结果（输出成年）
+    \item 循环打印数字：for i in range(3): print(i) → 循环输出 0、1、2
+    \item 基础函数定义：def add(a,b): return a+b; print(add(2,3)) → 定义加法函数并调用（输出 5）
+    \item 读取用户输入：user_input = input("请输入姓名："); print(user_input) → 获取用户输入并打印
+    \item 字典取值：info = {"age":20}; print(info["age"]) → 定义字典并获取指定键的值（输出 20）
+    \item 浮点数格式化：print(f"身高：{1.75:.1f}米") → 保留 1 位小数输出（输出身高：1.8 米）
+\end{enumerate}
+\subsection{python视觉应用练习内容}
+\begin{enumerate}
+    \item 图片的读写与信息查看：用Image.open()打开，img.size获取尺寸，img.save()保存。
+    \item 图片缩放与裁剪：img.resize()缩放，img.crop()裁剪。
+    \item 图片旋转与翻转：例如将图片顺时针旋转90°，img.rotate(90)用来顺时针旋转
+    \item 灰度图与黑白图转换：img.convert('L')转灰度，用point()方法实现阈值处理。
+    \item 图片的亮度：亮度为原来的1.5倍，adjustedimg = enhancer.enhance(1.5)。
+    \item 图片的对比度处理：adjustedimg = contrastenhancer.enhance(factor=1.5),factor=1.0,保持原对比度;
+    \item 图片的模糊处理:blurredimg = img.filter(ImageFilter.GaussianBlur(radius=5)),eadius越大越模糊
+    \item 图片的锐化处理：sharpened =img.filter(ImageFilter.SHARPEN)
+\end{enumerate}
+
+\section{练习结果}
+\subsection{命令行环境练习}
+\begin{itemize}
+\item 进程管理：通过pgrep -af "进程名"可精准定位 PID，pkill -f无需手动输入 PID 即可结束进程；wait命令确保子进程执行完毕后再运行后续命令，pidwait函数利用kill -0检测进程存活状态，配合sleep避免 CPU 占用过高。
+\item tmux：掌握窗口拆分、会话保存等操作，自定义.tmux.conf可提升多任务处理效率（如快捷键映射）。
+\end{itemize}
+
+\subsection{Python 基础练习}
+\begin{itemize}
+\item 变量与运算：理解数据类型（字符串、数值、布尔）的赋值与转换，如int("123")可将字符串转整数。
+\item 流程控制：if-else条件判断和for/while循环是逻辑核心，例如用for i in range(10)遍历 0-9。
+\item 数据结构：列表（list）、字典（dict）的索引与取值操作，如dict["key"]获取对应值。
+\end{itemize}
+
+\subsection{Python 视觉应用练习}
+\begin{itemize}
+\item 图片基础操作：用Image.open()读取图片后，可通过size属性获取宽高，save()指定格式（如 PNG）。
+\item 特效处理：亮度 / 对比度调整通过ImageEnhance模块实现，factor>1增强效果；高斯模糊radius=5可柔化图片，锐化SHARPEN滤镜突出边缘。
+\item 格式转换：灰度图convert('L')丢失色彩信息，黑白图通过point()阈值处理（如x>128设为白色）。
+\end{itemize}
+
+\section{解题感悟}
+\begin{enumerate}
+    \item 命令行：掌握进程管理与远程连接是高效运维的基础，tmux 等工具能大幅提升多任务处理能力。
+    \item Python 语法：基础数据类型与流程控制是核心，需大量的练习。
+    \item 图像处理：Pillow 库封装了底层操作，理解像素、通道等概念后，可灵活实现特效（如去噪、锐化），为进阶（如 OpenCV 计算机视觉）打下基础。
+\end{enumerate}
+
+\end{document}
+
+
+
+
